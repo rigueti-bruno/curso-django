@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse # função que gera uma "Response" genérica
+
+def my_view(request):
+    return HttpResponse('UMA LINDA STRING') # função que retorna uma "Response" genérica indicada pela função HTTPResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sobre/',my_view) # Executa a Response a partir de um caminho indicado
 ]
