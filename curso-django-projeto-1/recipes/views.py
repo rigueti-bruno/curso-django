@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render # randeriza os arquivos html e css do site
 
 # Create your views here.
 from django.http import HttpResponse # dependencia da view - cria a response

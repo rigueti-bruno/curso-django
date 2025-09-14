@@ -1,16 +1,18 @@
- {% include 'partials/head.html' %}
+<!-- Head-->
+{% include 'partials/head.html' %}
 
 <body>
-    <header class="main-header-container">
-        <div class="main-header container">
-            <h1>
-                <a class="main-logo" href="/">
-                    <i class="fa-solid fa-utensils main-logo-icon"></i>
-                    <span>Recipes</span>
-                </a>
-            </h1>
-        </div>
-    </header>
+    <!-- Header -->
+    {% include 'partials/header.html' %}
+
+    <!-- Formulario de busca-->
+    <div class="search-container">
+        <form class="search-form" action="">
+            <input class="search-input" type="search" name="search" placeholder="">
+            <button class="search-button" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
 </body>
 
 </html>
