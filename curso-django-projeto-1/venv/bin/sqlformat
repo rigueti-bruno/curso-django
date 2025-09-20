@@ -1,4 +1,4 @@
-#!/home/bruno_rigueti/curso-django/curso-django-projeto-1/venv/bin/python3
+#!/home/bruno/curso-django/curso-django-projeto-1/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
