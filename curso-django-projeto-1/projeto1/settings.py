@@ -118,6 +118,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'base_static', # inclui o caminho para arquivos estaticos globais do projeto
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles' # pasta onde os arquivos estaticos serao coletados para servico em producao (comando collectstatic)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
