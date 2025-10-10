@@ -11,4 +11,6 @@ def home(request): # view home
 # a tag 'recipes' receberá os dados gerados pela função make_recipe e com ela serão inseridos os dados no template
 
 def recipe(request, id): # view recipe
-    return render(request,'recipes/pages/recipe-view.html', context={'recipe':make_recipe()})
+    return render(request,'recipes/pages/recipe-view.html', context={
+        'recipe':make_recipe(), 
+        'is_detail_page':True})

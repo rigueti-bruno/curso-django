@@ -132,6 +132,7 @@ flex-grow: 1; /* Permite que os itens cresçam se houver espaço (ex: em uma lin
 
 .recipe-list-item {
     max-width: 64rem;
+    height: fit-content;
 }
 
 .recipe-list-item:hover {
@@ -221,6 +222,10 @@ flex-grow: 1; /* Permite que os itens cresçam se houver espaço (ex: em uma lin
     background: #000;
     color: #fff;
     padding: 2rem 3rem;
+}
+
+.preparation-steps {
+    padding: 2rem;
 }
 
 .main-footer a {
