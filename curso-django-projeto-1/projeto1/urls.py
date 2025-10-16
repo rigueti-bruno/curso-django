@@ -16,8 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('recipes.urls'))
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # Adiciona a configuração para servir arquivos de mídia durante o desenvolvimento
+# Essa configuração só deve ser usada em desenvolvimento. Em produção, os arquivos de mídia devem ser servidos por um servidor web dedicado.
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # Adiciona a configuração para servir arquivos estáticos durante o desenvolvimento
+# Essa configuração só deve ser usada em desenvolvimento. Em produção, os arquivos estáticos devem ser servidos por um servidor web dedicado.

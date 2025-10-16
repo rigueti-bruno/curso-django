@@ -38,3 +38,7 @@ class Recipe(models.Model): # cria uma classe para receber as receitas
     # o atributo on_delete define o que acontece quando a categoria relacionada é deletada (SET_NULL define que o campo será nulo)
     # o atributo null=True indica que o campo pode ser nulo
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) # atributo que cria um relacionamento com a classe User do Django
+    
+
+    def __str__(self):
+        return self.title # método que retorna o título da receita quando a instância for convertida para string

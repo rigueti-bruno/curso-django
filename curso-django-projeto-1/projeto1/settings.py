@@ -127,6 +127,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles' # pasta onde os arquivos estaticos serao coletados para servico em producao (comando collectstatic)
 
+MEDIA_URL = '/media/' # URL para acessar os arquivos de mídia
+
+MEDIA_ROOT = BASE_DIR / 'media/' # pasta onde os arquivos de mídia serao armazenados
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
