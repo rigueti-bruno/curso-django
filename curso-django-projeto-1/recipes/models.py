@@ -14,7 +14,7 @@ class Category(models.Model): # cria uma classe para receber as categorias das r
 class Recipe(models.Model): # cria uma classe para receber as receitas
     title = models.CharField(max_length=65) # cria o atributo title que receberá o título da receita
     # o tipo models.CharField é equivalente ao VarChar do SQl, e seu atributo max_length define o tamanho máximo do campo
-    decription = models.CharField(max_length=165) # atributo que receberá a descrição da receita
+    description = models.CharField(max_length=165) # atributo que receberá a descrição da receita
     slug = models.SlugField() # atributo especial para URLs, tem um tipo de dado específico
     preparation_time = models.IntegerField() # atributo que receberá o tempo de preparo da receita
     # o tipo models.IntegerField é equivalente ao Int do SQL
@@ -33,7 +33,7 @@ class Recipe(models.Model): # cria uma classe para receber as receitas
     is_published = models.BooleanField(default=False) # atributo que indicará se a receita está publicada ou não
     cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/') # atributo que receberá a imagem de capa da receita
     # o tipo models.ImageField é usado para armazenar imagens, e o atributo upload_to define o caminho onde a imagem será salva
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True) # atributo que cria um relacionamento com a classe Category
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True,blank=True,default=None) # atributo que cria um relacionamento com a classe Category
     # o tipo models.ForeignKey é usado para criar relacionamentos entre tabelas
     # o atributo on_delete define o que acontece quando a categoria relacionada é deletada (SET_NULL define que o campo será nulo)
     # o atributo null=True indica que o campo pode ser nulo
