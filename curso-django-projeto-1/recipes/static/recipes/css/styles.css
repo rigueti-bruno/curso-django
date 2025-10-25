@@ -224,10 +224,6 @@ flex-grow: 1; /* Permite que os itens cresçam se houver espaço (ex: em uma lin
     padding: 2rem 3rem;
 }
 
-.preparation-steps {
-    padding: 2rem;
-}
-
 .main-footer a {
     color: #454545;
     text-decoration: none;
@@ -237,4 +233,10 @@ flex-grow: 1; /* Permite que os itens cresçam se houver espaço (ex: em uma lin
 .main-footer a:hover {
     filter: brightness(1.2);
     color: #fff;
+}
+
+.preparation-steps h3{
+    margin: 2rem 0;
+    padding: 0 2rem;
+    text-align: center;
 }

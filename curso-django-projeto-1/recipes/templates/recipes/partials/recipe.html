@@ -68,7 +68,11 @@
 
                 {% if is_detail_page is True %}
                 <div class="preparation-steps">
-                    {{recipe.preparation_steps|linebreaksbr}} <!-- Filtro do Django que converte quebras de linha em <br> -->
+                    {% if recipe.preparation_steps_is_html is True %}
+                        {{recipe.preparation_steps|safe}} <!-- Filtro do Django que interpreta o conteúdo como HTML -->
+                    {% else %}
+                        {{recipe.preparation_steps|linebreaksbr}} <!-- Filtro do Django que converte quebras de linha em <br> -->
+                    {% endif %}
                 </div>
                 {% endif %}
                     </footer>
