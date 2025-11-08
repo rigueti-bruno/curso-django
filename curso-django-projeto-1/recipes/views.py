@@ -21,7 +21,17 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.db.models import Q
 
+# Utilizado para fazer referência a campos de outro model:
 from django.db.models import F
+
+# Importar funções de agregação:
+from django.db.models.aggregates import Count, Avg, Sum, Min, Max
+
+# Cria do valor do campo em Annotate:
+from django.db.models import Value 
+
+# Concatenar valores dos campos com Django:
+from django.db.models.functions import Concat
 
 def home(request): # view home
     recipes = get_list_or_404(Recipe,is_published=True)# obtem os dados da tabela Recipe e ordena por id decrescente
@@ -49,14 +59,15 @@ def category(request,category_id): # view category
 })
 
 def theory(request,*args,**kwargs):
-    recipes = Recipe.objects.values('id','title','description','author__username').filter(
-        Q(id__gt = 1) |
-        Q(author__username__icontains='maria')
-        ).order_by('-id')[:10]
-    context = {'recipes':recipes} # contexto da view, 'recipes':recipes recebe os dados do queryset
+    recipes = Recipe.objects.get_published() # executa todas as consultas do gerenciador personalizado RecipeManager
+    
+    number_of_recipes = recipes.aggregate(Count('id'))
+    context = {
+        'recipes':recipes,
+        'number_of_recipes':number_of_recipes['id__count'],
+        } # contexto da view, 'recipes':recipes recebe os dados do queryset
     return render(
         request,
         'recipes/pages/theory.html',
         context=context
     )
-    

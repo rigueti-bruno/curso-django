@@ -7,9 +7,10 @@
 </head>
 <body>    
     <h1>Theory</h1>
+    <p>Qtd. Receitas: {{number_of_recipes}}</p>
     {% for recipe in recipes %}
         <ul>
-            <li>{{recipe.id}} {{recipe.title}} {{recipe.description}} {{recipe.author__username}}</li>
+            <li>{{recipe.id}} {{recipe.title}} {{recipe.author_full_name}}</li>
         </ul>
     {% empty %}
         <p>No recipes found.</p>

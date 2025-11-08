@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User # Importa a classe User do Django
 
+# Concatenar valores dos campos com Django:
+from django.db.models.functions import Concat
+
+# Cria do valor do campo em Annotate:
+from django.db.models import Value 
+
+# Utilizado para fazer referência a campos de outro model:
+from django.db.models import F
+
 # Models são classes que representam tabelas no banco de dados.
 # Create your models here.
 
@@ -11,7 +20,19 @@ class Category(models.Model): # cria uma classe para receber as categorias das r
     def __str__(self):
         return self.name # método que retorna o nome da categoria quando a instância for convertida para string
 
+class RecipeManager(models.Manager):
+    def get_published(self):
+        return self.filter(
+            is_published=True
+        ).annotate(
+        author_full_name = Concat(
+            F('author__first_name'), Value(" "),
+            F('author__last_name'), Value(" "),
+            Value("("), F('author__username'), Value(")"))
+        ).order_by('-id')
+
 class Recipe(models.Model): # cria uma classe para receber as receitas
+    objects = RecipeManager() # substitui o gerenciador padrão do Django pelo gerenciador personalizado RecipeManager
     title = models.CharField(max_length=65) # cria o atributo title que receberá o título da receita
     # o tipo models.CharField é equivalente ao VarChar do SQl, e seu atributo max_length define o tamanho máximo do campo
     description = models.CharField(max_length=165) # atributo que receberá a descrição da receita
