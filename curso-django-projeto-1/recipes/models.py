@@ -10,6 +10,11 @@ from django.db.models import Value
 # Utilizado para fazer referência a campos de outro model:
 from django.db.models import F
 
+# Importa os os modulos para estabelecer a relação generica entre models:
+from django.contrib.contenttypes.fields import GenericRelation
+from tag.models import Tag
+
+
 # Models são classes que representam tabelas no banco de dados.
 # Create your models here.
 
@@ -59,7 +64,8 @@ class Recipe(models.Model): # cria uma classe para receber as receitas
     # o atributo on_delete define o que acontece quando a categoria relacionada é deletada (SET_NULL define que o campo será nulo)
     # o atributo null=True indica que o campo pode ser nulo
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) # atributo que cria um relacionamento com a classe User do Django
-    
+    # Campo que estabelece a relação genérica entre models:
+    tags = GenericRelation(Tag, related_query_name='recipes') # esse atributo identifica a relação genérica
 
     def __str__(self):
         return self.title # método que retorna o título da receita quando a instância for convertida para string
