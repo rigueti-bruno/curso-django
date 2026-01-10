@@ -1,0 +1,1 @@
+Revisão de alguns conceitos fundamentais de programação em Python aplicáveis ao desenvolvimento web.
