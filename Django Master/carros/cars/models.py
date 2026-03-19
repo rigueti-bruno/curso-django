@@ -15,7 +15,9 @@ class Car(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT,related_name='car_brand') # marca do carro
     factory_year = models.IntegerField(blank=True, null=True) # ano de fabricação do carro
     model_year = models.IntegerField(blank=True, null=True) # ano do modelo do carro
+    plate = models.CharField(max_length=10, blank=True, null=True) # placa do carro
     value = models.FloatField(blank=True, null=True) # valor do carro
+    photo = models.ImageField(upload_to='cars/', blank=True, null=True) # foto do carro
     
     def __str__(self):
         return self.model
