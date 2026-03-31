@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <title>Meus Carros</title>
+    </head>
+    {% block content %} <!-- indica que o conteúdo a seguir é um bloco de conteúdo que pode receber o conteúdo dos dados indicadoa -->
+    <body>  
+        <h3>Carro 1: {{cars.model1}}</h3> <!-- conteúdo dinâmico que recebe o valor do dicionário passado pela view -->
+        <h3>Carro 2: {{cars.model2}}</h3>
+    </body>
+    {% endblock %}
+</html>
