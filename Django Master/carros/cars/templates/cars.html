@@ -3,9 +3,10 @@
         <title>Meus Carros</title>
     </head>
     {% block content %} <!-- indica que o conteúdo a seguir é um bloco de conteúdo que pode receber o conteúdo dos dados indicadoa -->
-    <body>  
-        <h3>Carro 1: {{cars.model1}}</h3> <!-- conteúdo dinâmico que recebe o valor do dicionário passado pela view -->
-        <h3>Carro 2: {{cars.model2}}</h3>
+    <body>
+        {% for car in cars %} <!-- itera os registros recebidos do banco de dados para os exibir -->
+            <h3>{{car.brand}} - {{car.model}} - {{car.factory_year}}</h3> <!-- conteúdo dinâmico que recebe o valor do dicionário passado pela view -->
+        {% endfor %} <!-- finaliza o loop for -->
     </body>
     {% endblock %}
 </html>
