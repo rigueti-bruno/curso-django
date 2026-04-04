@@ -5,8 +5,15 @@ from cars.models import Car # importa os dados do modelo Car para serem utilizad
 
 # View/Função que será retornada pelo URL
 def carros(request):
-    cars = Car.objects.filter(brand__name = "Fiat") # obtém os carros da marca Fiat do banco de dados
-    # como brand é uma chave estrangeira, é necessário acessar o nome da marca utilizando a sintaxe brand__name
+    cars = Car.objects.all().order_by('model') # pega todos os registros do banco de dados na tabela Car
+    # order_by ordena os registro pelo paramentro informado de A-Z, nesse caso o campo model
+    
+    search = request.GET.get('search') # busca na requisição se foi informado algum valor no parametro search
+    
+    if search: # se for identificado um valor no parametro search
+        cars = cars.filter(model__icontains=search) # filtra os registros do banco de dados utilizando o valor do parametro search e o campo model da tabela Car
+        # o parametro __icontains retorna os registros com o valor solicitado, independente da forma como o valor foi informado
+    
     return render(request, # requisição recebida do usuário
                   'cars.html', # template que será randerizado e exibido para o usuário
-                  {'cars': cars}) # dados que serão passados para o template obtidos do banco de dados
+                  {'cars': cars}) # dados que serão passados para o template obtidos do banco de dados ou do filtro realizado com o parametro search
