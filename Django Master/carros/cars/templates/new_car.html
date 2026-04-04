@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method = "post" enctype = "multipart/form-data">
+    <!-- method = "post" significa que o formulário enviará os dados via POST -->
+    <!-- enctype = "multipart/form-data" significa que o formulário receberá vários tipos de dados -->
+        {% csrf_token %} <!-- Token de segurança para proteção contra CSRF -->
+        {{ new_car_form}} <!-- Vincula o formulário à template -->
+    </form>
+{% endblock %}
