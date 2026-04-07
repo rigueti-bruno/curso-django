@@ -5,6 +5,9 @@
     <!-- method = "post" significa que o formulário enviará os dados via POST -->
     <!-- enctype = "multipart/form-data" significa que o formulário receberá vários tipos de dados -->
         {% csrf_token %} <!-- Token de segurança para proteção contra CSRF -->
-        {{ new_car_form}} <!-- Vincula o formulário à template -->
+        <table>
+            {{ new_car_form.as_table}} <!-- Vincula o formulário à template -->
+        </table>
+        <input type="submit" value="Cadastrar" class="btn btn-primary"> <!-- Botão de envio dos dados do formulário "POST" -->
     </form>
 {% endblock %}
