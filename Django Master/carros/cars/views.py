@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect #importa as funções render e redirect
 from cars.models import Car # importa os dados do modelo Car para serem utilizados na view
-from cars.forms import CarForm # importa os dados do formulário CarForm para serem utilizados na view
+from cars.forms import CarModelForm # importa os dados do formulário CarForm para serem utilizados na view
 
 # View/Função que será retornada pelo URL
 def carros(request):
@@ -21,12 +21,12 @@ def carros(request):
     
 def new_car_view(request):
     if request.method == 'POST':
-        new_car_form = CarForm(request.POST,request.FILES) # cria um formulário utilizando a classe CarForm e os dados recebidos do formulário enviado pelo usuário
+        new_car_form = CarModelForm(request.POST,request.FILES) # cria um formulário utilizando a classe CarModelForm e os dados recebidos do formulário enviado pelo usuário
         if new_car_form.is_valid(): # verifica se os dados do formulário são válidos
             new_car_form.save() # salva os dados do formulário no banco de dados
             return redirect("cars_list") # redireciona o usuário para a página de listagem de carros após o cadastro de um novo carro
     else:
-        new_car_form = CarForm() # cria um formulário vazio utilizando a classe CarForm    
+        new_car_form = CarModelForm() # cria um formulário vazio utilizando a classe CarModelForm    
     return render(
         request,
         'new_car.html', # vincula o template do formulário à view
