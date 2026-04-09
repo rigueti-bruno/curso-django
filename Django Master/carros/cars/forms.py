@@ -33,3 +33,22 @@ class CarModelForm(forms.ModelForm):
     class Meta: # define a classe Meta para configurar o formulário baseado no modelo Car
         model = Car # define que o formulário é baseado no modelo Car
         fields = '__all__' # define que todos os campos do modelo Car serão utilizados no formulário
+        
+    # Vamos inserir abaixo as regras de validação para os campos do formulário utilizando o método clean() do formulário
+
+    # Exigindo que o carro tenha o valor acima de R$20.000:
+    def clean_value(self):
+        value = self.cleaned_data.get('value') # captura o campo com o valor informado para o carro
+        
+        if value < 20000:
+            self.add_error('value', 'O valor mínimo deve ser R$20.000,00') # define a regra de validação para o campo
+        
+        return value # caso o valor seja valido, ele é retornado para seguir o cadastro.
+    
+    def clean_factory_year(self):
+        factory_year = self.cleaned_data.get('factory_year') # captura o ano de fabricação do carro
+        
+        if factory_year < 1975:
+            self.add_error('factory_year', 'O carro deve ser mais novo!') # define a regra de validação
+            
+        return factory_year # permite seguir o cadastro caso o ano seja válido
