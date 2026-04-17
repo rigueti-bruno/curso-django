@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cars',
+    'cars', # habilita o app cars
+    'accounts', # habilita o app accounts
 ]
 
 MIDDLEWARE = [

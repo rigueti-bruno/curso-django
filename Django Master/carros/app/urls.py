@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from cars.views import carros, new_car_view
+from cars.views import carros, new_car_view # importa as views de carros criadas
+from accounts.views import register_view # importa a view de registro de usuário criada
 
 
 
@@ -26,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('carros/',carros,name='cars_list'),
     path('new_car/', new_car_view, name='new_car'),
+    path('register/', register_view, name='register'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

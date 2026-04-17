@@ -1,0 +1,30 @@
+{% extends "base.html" %} <!-- Herda o padrão de design do projeto -->
+
+{% block content %} <!-- Abre um bloco de conteúdo -->
+    <form method="post"> <!-- Cria um formulário que será enviado via método POST -->
+        {% csrf_token %} <!-- Adiciona uma camada de proteção ao form -->
+
+        <div class="form-group">
+            {{ user_form.username.errors}} <!-- Exibe erros no preenchimento do campo -->
+            <label>Usuário:</label> <!-- Rótulo para identificar o campo -->
+            {{ user_form.username }} <!-- Campo de entrada para o usuario preencher -->
+        </div>
+
+        <div class="form-group">
+            {{ user_form.password1.errors}}
+            <label>Senha:</label>
+            {{ user_form.password1 }}
+        </div>
+
+        <div class="form-group">
+            {{ user_form.password2.errors}}
+            <label>Confirmar Senha:</label>
+            {{ user_form.password2 }}
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Cadastrar"> <!-- Adiciona um botão de envio ao form -->
+        </div>
+        
+    </form>
+{% endblock %} <!-- Fecha o bloco de conteúdo -->
