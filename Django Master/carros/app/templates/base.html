@@ -72,8 +72,24 @@
   <header>
     <nav>
       <ul>
+        {% if user.is_authenticated %} <!-- Verifica se há um usuário logado -->
+          <li>Olá, {{user.username}}</li> <!-- Exibe o nome do usuário logado no sistema -->
+          <li><a href="{% url 'new_car' %}">Novo Carro</a></li> <!-- Permite o usuário cadastrar um novo carro -->
+        {% endif %}
+
+        {% if not user.is_authenticated %} <!-- Verifica se não há usuário logado -->
+          <li><a href="{% url 'register' %}">Cadastre-se</a></li> <!-- Permite o usuário se cadastrar no sistema -->
+          <li><a href="{% url 'login' %}">Login</a></li> <!-- Permite o usuário fazer o login no sistema -->
+        {% endif %}
+        
+        <!-- Exibido com o usuário logado ou não: -->
         <li><a href="{% url 'cars_list' %}">Carros</a></li> <!-- Cria uma aba que direciona para a lista de carros -->
-        <li><a href="{% url 'new_car' %}">Novo Carro</a></li> <!-- Cria um aba que leva ao cadastro de novo carrox -->
+
+        {% if user.is_authenticated %} <!-- Verifica se há um usuário logado -->
+          <li><a href="{% url 'logout' %}">Sair</a></li> <!-- Permite o usuário fazer o logout do sistema -->
+        {% endif %}
+        
+        
       </ul>
     </nav>
   </header>

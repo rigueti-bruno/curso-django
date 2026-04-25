@@ -1,0 +1,11 @@
+{% extends "base.html" %} <!-- Puxa a formatação padrão do projeto -->
+
+{% block content %} <!-- Inicia um bloco de conteúdo -->
+    <form method="post">
+        {% csrf_token %} <!-- Insere a camada de segurança do Django -->
+        <table>
+            {{ login_form.as_table }} <!-- Exibe os dados de login no formato de tabela -->
+        </table>
+        <input type="submit" value="Entrar"> <!-- Cria um botão para executar o login -->
+    </form>
+{% endblock %}
